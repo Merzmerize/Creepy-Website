@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>If You Are Reading This</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+      background-image: url('cleaned_creepy_background_only.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      animation: flickerBackground 1.5s infinite;
+      overflow: hidden;
+    }
+
+    @keyframes flickerBackground {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(0.85); }
+    }
+
+    #message {
+      opacity: 0;
+      transition: opacity 2s ease-in;
+      max-width: 90%;
+      max-height: 90%;
+      box-shadow: 0 0 40px rgba(255, 0, 0, 0.2);
+      border: 4px solid rgba(255, 255, 255, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      body {
+        background-size: contain;
+      }
+      #message {
+        width: 95%;
+        height: auto;
+      }
+    }
+  </style>
+  <script>
+    window.onload = () => {
+      setTimeout(() => {
+        document.getElementById('message').style.opacity = 1;
+      }, 2500);
+
+      const audio = new Audio('https://cdn.pixabay.com/download/audio/2023/03/28/audio_6660d25c42.mp3?filename=ambient-creepy-background-141146.mp3');
+      audio.loop = true;
+      audio.volume = 0.4;
+      audio.play().catch(e => console.log('Audio autoplay blocked:', e));
+    };
+  </script>
+</head>
+<body>
+  <img id="message" src="cleaned_creepy_message_image.png" alt="If you are reading this, you are dead" />
+</body>
+</html>
